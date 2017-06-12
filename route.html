@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/renew.css">
+	<script type="text/javascript" src="http://s.59pi.com/js/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/angular-1.4.2.js"></script>
+	<script src="js/angular-route.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.0-beta.4/angular-animate.min.js"></script>
+    <script src="http://cdn.bootcss.com/angular-ui-bootstrap/0.13.3/ui-bootstrap.min.js"></script>  
+    <script src="http://cdn.bootcss.com/angular-ui-bootstrap/0.13.3/ui-bootstrap-tpls.min.js"></script>
+	<script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>
+	<script type="text/javascript" src="http://s.59pi.com/js/jquery/layer/jquery-layer.js"></script>
+    <script src="js/renew.js"></script>
+</head>
+<body class="body1">
+	
+<div ng-app="myApp" ng-controller="sitesCtrl"> 
+	<nav class="navbar navbar-default navbar-fixed-top index_nav">
+        <div class="container">
+            <div class="input-group">
+                <i class="input-group-addon glyphicon glyphicon-search"></i>
+                <input type="text" class="form-control" placeholder="搜索知乎内容" aria-describedby="basic-addon1">
+            </div>
+        </div>
+    </nav>
+
+	<div ng-view=""></div>
+	
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container bot">
+            <ul class="nav navbar-nav row">
+                <li class="col-xs-3 col-sm-3 col-md-3"><a href="#/computers"><span class="glyphicon glyphicon-list-alt"></span></a></li>
+                <li class="col-xs-3 col-sm-3 col-md-3"><a href="#/art"><span class="glyphicon glyphicon-record"></span></a></li>
+                <li class="col-xs-3 col-sm-3 col-md-3"><a href="#/music"><span class="glyphicon glyphicon-edit"></span></a></li>
+                <li class="col-xs-3 col-sm-3 col-md-3"><a href="#/history"><span class="glyphicon glyphicon-user"></span></a></li>
+            </ul>    
+        </div>
+    </nav>
+
+	<script type="text/ng-template" id="embedded.computers.html">
+		<div class="container list_content">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul>
+                        <li ng-click="OpenDetail(y.id)" ng-repeat="y in names">
+                            <div><img src="img/{{ y.img }}"><span class="source">热门内容，来自：{{ y.source }}</span></div>
+                            <div class="title">{{ y.title }}</div>
+                            <p class="content">{{ y.content }}</p>
+                            <div class="count">{{ y.zan }}&nbsp;赞同&nbsp;·&nbsp;{{ y.pin }}&nbsp;评论&nbsp;·&nbsp;关注问题</div>
+                        </li>
+                    </ul>
+
+				</div>
+			</div>
+		</div>
+    </script>
+	
+	<script type="text/ng-template" id="embedded.art.html">
+		<div id="box">
+			<ul>
+				<li><img src="img/timg.jpg"></li>
+			</ul>
+		</div>
+		<div class="box_item">
+			<div class="circle">
+				<div></div>
+				<p>专栏</p>
+			</div>
+			<div class="circle">
+				<div></div>
+				<p>Live</p>
+			</div>
+			<div class="circle">
+				<div></div>
+				<p>书店</p>
+			</div>
+			<div class="circle">
+				<div></div>
+				<p>收藏夹</p>
+			</div>
+			<div class="circle">
+				<div></div>
+				<p>圆桌</p>
+			</div>
+		</div>
+		<div>
+		    <div class="echart">
+		        <label>
+		            <input type="radio" name="chickenEgg" value="chicken" ng-model="chickenEgg">
+		            注册量
+		        </label>
+		    </div>
+		    <div class="echart">
+		        <label>
+		            <input type="radio" name="chickenEgg" value="egg" ng-model="chickenEgg">
+		            流量
+		        </label>
+		    </div>
+		</div>
+
+		<line id="main" legend="legend" item="item" data="data" ng-if="chickenEgg == 'chicken'"></line>
+		<line id="main" legend="legend" item="item" data="data1" ng-if="chickenEgg == 'egg'"></line>
+    </script>
+
+	<script type="text/ng-template" id="embedded.music.html">
+		<div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <table class="table">
+                        <tr ng-repeat=" ar in arrs">
+                            <td>{{$index+1}}</td>
+                            <td ng-repeat="a in ar"> {{a}} </td>
+                            <td><a href="javascript:void(0)" ng-click="updata($index)"><span class="glyphicon glyphicon-pencil"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a ng-click="delete($index)" href="javascript:void(0)"><span class="glyphicon glyphicon-remove"></a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="modal" id="modal-1">
+				<div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" data-dismiss="modal">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                            <h3 class="modal-title">修改商品</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div>商品编号</div>
+                            <input ng-model="prod.productid" value="{{prod.productid}}">
+                            <div>商品名称</div>
+                            <input ng-model="prod.productname" value="{{prod.productname}}">
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button class="btn btn-success" ng-click="save()">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</script>
+    
+    <script type="text/ng-template" id="embedded.history.html">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <img src="img/user.png" class="user_img">
+                    <span>WUWENSHI</span>
+                </div>
+            </div>
+        </div>
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="glyphicon glyphicon-eye-open user_list" aria-hidden="true"></span>
+                我的关注
+            </li>
+            <li class="list-group-item">
+                <span class="glyphicon glyphicon-star user_list" aria-hidden="true"></span>
+                我的收藏
+            </li>
+            <li class="list-group-item">
+                <span class="glyphicon glyphicon-time user_list" aria-hidden="true"></span>
+                最近浏览
+            </li>
+        </ul>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="glyphicon glyphicon-cog user_list" aria-hidden="true"></span>
+                设置
+            </li>
+        </ul>
+    </script>
+</div>
+</body>
+</html>

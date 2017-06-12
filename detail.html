@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/renew.css">
+		<script type="text/javascript" src="http://s.59pi.com/js/jquery-1.10.2.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/angular-1.4.2.js"></script>
+		<script src="js/angular-route.js"></script>
+	    <script src="http://apps.bdimg.com/libs/angular.js/1.4.0-beta.4/angular-animate.min.js"></script>  
+		<script src="http://cdn.bootcss.com/angular-ui-bootstrap/0.13.3/ui-bootstrap.min.js"></script>
+		<script src="http://cdn.bootcss.com/angular-ui-bootstrap/0.13.3/ui-bootstrap-tpls.min.js"></script>
+		<script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>
+		<script type="text/javascript" src="http://s.59pi.com/js/jquery/layer/jquery-layer.js"></script>
+		<script src="js/renew.js"></script>
+	</head>
+	<body ng-app="myDetail" ng-controller="DetailCtrl">
+		<div ng-controller="DetailCtrl">
+			<div class="detail_nav">
+				<a href="#" class="btn-info" ng-click="back()">
+					<i class="glyphicon glyphicon-remove icon"></i>
+				</a>
+				<input type="text" class="form-control" placeholder="搜索知乎内容" aria-describedby="basic-addon1">
+				<h3>{{title}}</h3>
+			</div>
+			<div class="detail_author">
+				<img src="img/{{img}}">
+				<span>{{author}}</span>
+			</div>
+			<div class="detail_content">{{content}}</div>
+		</div>
+		
+	</body>
+</html>
